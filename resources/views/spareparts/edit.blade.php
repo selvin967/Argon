@@ -1,28 +1,25 @@
 @extends('layouts.panel')
-@section('title', 'Repuestos/Edit')
+@section('title', 'SpareParts/Edit')
 
 @section('content')
-    <div class="col-xl-12 order-xl-1">
-        <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0"><i class="fas fa-edit"></i> Editar Repuesto</h3>
-                    </div>
-                    <div class="col-4 text-right">
-                        <a href="{{ route('spareparts.index') }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-arrow-left"></i> Volver
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body container-fluid">
-                <form action="{{ route('spareparts.update', $sparePart) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @include('spareparts.form')
-                </form>
-            </div>
-        </div>
+    <div class="col-12">
+        <form action="{{ route('spareparts.update', $sparePart) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <x-crud-card
+                title="Editar Repuesto"
+                icon="fa-edit"
+                back-url="{{ route('spareparts.index') }}"
+                back-text="Volver"
+                subtitle="Actualiza información del repuesto"
+            >
+                @include('spareparts.form')
+
+                <x-slot name="footer">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a href="{{ route('spareparts.index') }}" class="btn btn-secondary">Cancelar</a>
+                </x-slot>
+            </x-crud-card>
+        </form>
     </div>
 @endsection

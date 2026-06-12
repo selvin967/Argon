@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('recommendation_text')->nullable();
             $table->date('recommended_date')->nullable();
             $table->unsignedInteger('recommended_mileage')->nullable();
-            $table->string('priority', 50)->nullable();
+            $table->enum('priority', ['low', 'medium', 'high'])->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

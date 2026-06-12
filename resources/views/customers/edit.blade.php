@@ -3,26 +3,27 @@
 
 @section('content')
     <div class="col-xl-12 order-xl-1">
-        <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0"><i class="fas fa-edit"></i> Editar Cliente</h3>
-                    </div>
-                    <div class="col-4 text-right">
-                        <a href="{{ route('customers.index') }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-arrow-left"></i> Volver
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body container-fluid">
-                <form action="{{ route('customers.update', $customer) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @include('customers.form')
-                </form>
-            </div>
-        </div>
+        <form action="{{ route('customers.update', $customer) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <x-crud-card
+                title="Editar Cliente"
+                icon="fa-edit"
+                back-url="{{ route('customers.index') }}"
+                back-text="Volver"
+                subtitle="Modifica los datos del cliente"
+            >
+                @include('customers.form')
+
+                <x-slot name="footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Actualizar
+                    </button>
+                    <a href="{{ route('customers.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                </x-slot>
+            </x-crud-card>
+        </form>
     </div>
 @endsection

@@ -16,13 +16,42 @@ use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\RecommendationController;
+use App\Models\Customer;
+use App\Models\Vehicle;
+use App\Models\Maintenance;
+use App\Models\Technician;
+use App\Models\Service;
+use App\Models\SparePart;
+use App\Models\Recommendation;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $customerCount = Customer::count();
+    $vehicleCount = Vehicle::count();
+    $maintenanceCount = Maintenance::count();
+    $technicianCount = Technician::count();
+    $serviceCount = Service::count();
+    $sparePartCount = SparePart::count();
+    $recommendationCount = Recommendation::count();
+    $latestMaintenances = Maintenance::with(['customer', 'vehicle'])->latest()->take(5)->get();
+    $latestServices = Service::latest()->take(5)->get();
+    $latestSpareParts = SparePart::latest()->take(5)->get();
+
+    return view('dashboard', compact(
+        'customerCount',
+        'vehicleCount',
+        'maintenanceCount',
+        'technicianCount',
+        'serviceCount',
+        'sparePartCount',
+        'recommendationCount',
+        'latestMaintenances',
+        'latestServices',
+        'latestSpareParts'
+    ));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

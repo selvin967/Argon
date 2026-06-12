@@ -22,9 +22,8 @@ class CarrerController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $carrers->perPage());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    // ? F en el chat
     public function create()
     {
         $carrer = new Carrer();

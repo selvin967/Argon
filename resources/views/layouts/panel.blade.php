@@ -16,8 +16,55 @@
     <link href="{{ asset('js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{ asset('css/argon-dashboard.css?v=1.1.2') }}" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+        body {
+            background: #f4f7fb;
+            color: #252f40;
+        }
+        .main-content {
+            min-height: 100vh;
+        }
+        .navbar-vertical .navbar-brand {
+            padding: 1.2rem 0;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #3a76f0 0%, #5f9df8 100%) !important;
+        }
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+        }
+        .card-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .card-footer {
+            background: #fbfbfb;
+        }
+        .crud-card-footer > *:not(:last-child) {
+            margin-right: 0.75rem;
+        }
+        .badge-dark {
+            background-color: #344767;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .header {
+            min-height: 190px;
+        }
+        .bg-white .navbar-brand-img {
+            max-height: 4rem;
+        }
+        .navbar-top {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.92);
+        }
+    </style>
 
     {{-- @vite('resources/js/app.js') --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
@@ -33,8 +80,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Brand -->
-            <a class="navbar-brand pt-0" href="#">
-                <img src="{{ asset('img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
+            <a class="navbar-brand pt-0 d-flex align-items-center" href="{{ route('dashboard') }}">
+                <img src="{{ asset('img/brand/blue.png') }}" class="navbar-brand-img" alt="Logo" style="width:auto;">
+                <span class="ml-2 font-weight-bold text-primary">{{ config('app.name') }}</span>
             </a>
             <!-- User -->
             @include('includes.mobile_menu')
@@ -83,89 +131,7 @@
             </nav>
             <!-- End Navbar -->
             <!-- Header -->
-            <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-                @if (request()->routeIs('dashboard'))
-                    <div class="container-fluid">
-                        <div class="header-body">
-                            <!-- Card stats -->
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-6">
-                                    <div class="card card-stats mb-4 mb-xl-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="card-title text-uppercase text-muted mb-0">Dato 1</h5>
-                                                    <span class="h2 font-weight-bold mb-0">Ejemplo</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div
-                                                        class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                                        <i class="fas fa-chart-bar"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-6">
-                                    <div class="card card-stats mb-4 mb-xl-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="card-title text-uppercase text-muted mb-0">Dato 2</h5>
-                                                    <span class="h2 font-weight-bold mb-0">Ejemplo</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div
-                                                        class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                        <i class="fas fa-chart-pie"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-6">
-                                    <div class="card card-stats mb-4 mb-xl-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="card-title text-uppercase text-muted mb-0">Dato 3</h5>
-                                                    <span class="h2 font-weight-bold mb-0">Ejemplo</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div
-                                                        class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                                        <i class="fas fa-users"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-lg-6">
-                                    <div class="card card-stats mb-4 mb-xl-0">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5 class="card-title text-uppercase text-muted mb-0">Dato 4</h5>
-                                                    <span class="h2 font-weight-bold mb-0">Ejemplo</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <div
-                                                        class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                                        <i class="fas fa-percent"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
-            </div>
+            <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
             <div class="container-fluid mt--7">
                 @yield('content')
             </div>
@@ -179,11 +145,8 @@
     <script src="{{ asset('js/plugins/chart.js/dist/Chart.min.js') }}"></script>
     <script src="{{ asset('js/plugins/chart.js/dist/Chart.extension.js') }}"></script>
 
-    <!-- Include Choices JavaScript (latest) -->
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-    <!-- Or versioned -->
+    <!-- Include Choices JavaScript (versioned) -->
     <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js">
     </script>
@@ -195,12 +158,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var multipleCancelButton = new Choices('#exampleFormControlSelect2', {
-                removeItemButton: true,
-                maxItemCount:5,
-                searchResultLimit:5,
-                renderChoiceLimit:5
-            });
+            var selectElement = document.querySelector('#exampleFormControlSelect2');
+            if (selectElement) {
+                var multipleCancelButton = new Choices(selectElement, {
+                    removeItemButton: true,
+                    maxItemCount: 5,
+                    searchResultLimit: 5,
+                    renderChoiceLimit: 5
+                });
+            }
         });
     </script>
 

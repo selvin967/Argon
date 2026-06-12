@@ -1,34 +1,44 @@
 @extends('layouts.panel')
-@section('title', 'Repuestos/Show')
+@section('title', 'SpareParts/Show')
 
 @section('content')
-    <div class="col-xl-12 order-xl-1">
-        <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0"><i class="fas fa-eye"></i> Mostrar Repuesto</h3>
-                    </div>
-                    <div class="col-4 text-right">
-                        <a href="{{ route('spareparts.index') }}" class="btn btn-sm btn-primary">
-                            <i class="fas fa-arrow-left"></i> Volver
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body container-fluid">
-                <p><strong>Nombre:</strong> {{ $sparePart->part_name }}</p>
-                <p><strong>Marca:</strong> {{ $sparePart->brand ?? 'N/A' }}</p>
-                <p><strong>Precio unitario:</strong> {{ $sparePart->unit_price ?? '0.00' }}</p>
-                <p><strong>Stock:</strong> {{ $sparePart->stock_quantity ?? '0' }}</p>
-                <p><strong>Proveedor:</strong> {{ $sparePart->supplier ?? 'N/A' }}</p>
-                <p><strong>Fecha de compra:</strong> {{ $sparePart->purchase_date ?? 'N/A' }}</p>
-                <p><strong>Estado:</strong> {{ ucfirst($sparePart->status ?? 'N/A') }}</p>
-                <p><strong>Descripción:</strong></p>
-                <div class="border rounded p-3 bg-white">
-                    {{ $sparePart->description ?? 'Sin descripción' }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-crud-card
+        title="Detalle Repuesto"
+        icon="fa-boxes"
+        back-url="{{ route('spareparts.index') }}"
+        back-text="Volver"
+        subtitle="Detalles y stock del repuesto"
+    >
+        <dl class="row">
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">{{ $sparePart->part_name }}</dd>
+
+            <dt class="col-sm-3">Marca</dt>
+            <dd class="col-sm-9">{{ $sparePart->brand ?? 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Descripción</dt>
+            <dd class="col-sm-9">{{ $sparePart->description ?? 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Precio unitario</dt>
+            <dd class="col-sm-9">${{ number_format($sparePart->unit_price, 2) }}</dd>
+
+            <dt class="col-sm-3">Stock</dt>
+            <dd class="col-sm-9">{{ $sparePart->stock_quantity }}</dd>
+
+            <dt class="col-sm-3">Proveedor</dt>
+            <dd class="col-sm-9">{{ $sparePart->supplier ?? 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Fecha de compra</dt>
+            <dd class="col-sm-9">{{ optional($sparePart->purchase_date)->format('Y-m-d') ?? 'N/A' }}</dd>
+
+            <dt class="col-sm-3">Estado</dt>
+            <dd class="col-sm-9">{{ ucfirst($sparePart->status) }}</dd>
+        </dl>
+
+        <x-slot name="footer">
+            <a href="{{ route('spareparts.edit', $sparePart) }}" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+        </x-slot>
+    </x-crud-card>
 @endsection

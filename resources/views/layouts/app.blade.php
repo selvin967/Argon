@@ -16,6 +16,25 @@
     <link href="{{ asset('js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{ asset('css/argon-dashboard.css?v=1.1.2') }}" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(180deg, #f8fbff 0%, #dfe9ff 100%);
+            color: #22313f;
+        }
+        .header {
+            min-height: 260px;
+        }
+        .navbar-horizontal .navbar-brand img {
+            max-height: 4rem;
+        }
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        }
+        .footer .nav-footer .nav-link {
+            color: #6c757d;
+        }
+    </style>
 </head>
 
 <body class="bg-default">
@@ -25,7 +44,7 @@
         <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
             <div class="container px-4">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ asset('img/brand/white.png') }}" />
+                    <img src="{{ asset('img/brand/white.png') }}" style="max-height:5rem; width:auto;" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +56,7 @@
                         <div class="row">
                             <div class="col-6 collapse-brand">
                                 <a href="">
-                                    <img src="{{ asset('img/brand/blue.png') }}">
+                                    <img src="{{ asset('img/brand/blue.png') }}" style="max-height:5rem; width:auto;">
                                 </a>
                             </div>
                             <div class="col-6 collapse-close">
@@ -159,7 +178,7 @@
             });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    @include('components.alerts') <!-- Mueve esto al final -->
+    @include('components.alerts')
 </body>
 
 </html>

@@ -61,9 +61,5 @@
         </div>
     </div>
 
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary">
-            <i class="fas fa-save"></i> {{ isset($technician->id) ? 'Actualizar' : 'Registrar' }}
-        </button>
-        <a href="{{ route('technicians.index') }}" class="btn btn-secondary">Cancelar</a>
-    </div>
+    {{-- Botones de acción movidos al footer del contenedor padre --}}
+</div>

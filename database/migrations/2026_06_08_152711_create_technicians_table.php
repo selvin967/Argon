@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email',100)->unique();
             $table->date('hire_date')->nullable();
             $table->decimal('salary', 12, 2)->default(0);
-            $table->string('specialty')->nullable();
+            $table->enum('specialty', ['electrical', 'plumbing', 'HVAC'])->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
