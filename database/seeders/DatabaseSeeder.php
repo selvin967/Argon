@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         // Crear datos de prueba para Services
         Service::factory(12)->create();
 
-        // Crear usuarios solo si no existen
         if (User::count() === 0) {
             User::factory()->create(
                 [

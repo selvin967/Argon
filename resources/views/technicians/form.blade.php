@@ -45,7 +45,12 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="specialty">Especialidad</label>
-                <input type="text" id="specialty" name="specialty" class="form-control form-control-alternative" value="{{ old('specialty', $technician->specialty ?? '') }}">
+                <select id="specialty" name="specialty" class="form-control form-control-alternative">
+                    <option value="">Seleccione una especialidad</option>
+                    <option value="electrical" {{ old('specialty', $technician->specialty ?? '') == 'electrical' ? 'selected' : '' }}>Eléctrico</option>
+                    <option value="plumbing" {{ old('specialty', $technician->specialty ?? '') == 'plumbing' ? 'selected' : '' }}>Tuberías</option>
+                    <option value="HVAC" {{ old('specialty', $technician->specialty ?? '') == 'HVAC' ? 'selected' : '' }}>HVAC</option>
+                </select>
             </div>
         </div>
 

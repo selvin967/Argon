@@ -27,7 +27,7 @@ class TechnicianRequest extends FormRequest
             ],
             'hire_date' => ['nullable', 'date'],
             'salary' => ['nullable', 'numeric', 'min:0'],
-            'specialty' => ['nullable', 'string', 'max:255'],
+            'specialty' => ['nullable', 'in:electrical,plumbing,HVAC'],
             'status' => ['nullable', 'string', 'in:active,inactive'],
         ];
     }
