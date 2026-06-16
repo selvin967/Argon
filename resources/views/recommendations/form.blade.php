@@ -45,7 +45,15 @@
         <div class="col-lg-4">
             <div class="form-group">
                 <label class="form-control-label" for="priority">Prioridad</label>
-                <input type="text" id="priority" name="priority" class="form-control form-control-alternative" value="{{ old('priority', $recommendation->priority ?? '') }}">
+                <select id="priority" name="priority" class="form-control form-control-alternative @error('priority') is-invalid @enderror">
+                    <option value="">Seleccione una prioridad</option>
+                    <option value="low" {{ old('priority', $recommendation->priority ?? '') == 'low' ? 'selected' : '' }}>Baja</option>
+                    <option value="medium" {{ old('priority', $recommendation->priority ?? '') == 'medium' ? 'selected' : '' }}>Media</option>
+                    <option value="high" {{ old('priority', $recommendation->priority ?? '') == 'high' ? 'selected' : '' }}>Alta</option>
+                </select>
+                @error('priority')
+                    <span class="text-danger small">{{ $message }}</span>
+                @enderror
             </div>
         </div>
 

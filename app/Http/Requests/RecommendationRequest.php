@@ -18,7 +18,7 @@ class RecommendationRequest extends FormRequest
             'recommendation_text' => ['nullable', 'string'],
             'recommended_date' => ['nullable', 'date'],
             'recommended_mileage' => ['nullable', 'integer', 'min:0'],
-            'priority' => ['nullable', 'string', 'max:50'],
+            'priority' => ['nullable', 'string', 'in:low,medium,high'],
             'status' => ['nullable', 'string', 'in:active,inactive'],
         ];
     }

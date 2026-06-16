@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 /**
  * Class Maintenance
@@ -34,6 +35,11 @@ class Maintenance extends Model
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Vehicle::class);
+    }
+
+    public function customer(): HasOneThrough
+    {
+        return $this->hasOneThrough(Customer::class, Vehicle::class, 'id', 'id', 'vehicle_id', 'customer_id');
     }
 
     public function technician(): BelongsTo
